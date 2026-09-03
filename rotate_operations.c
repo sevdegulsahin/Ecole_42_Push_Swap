@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sevdsahi <sevdsahi@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 14:28:35 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/01 17:15:02 by sevdsahi         ###   ########.fr       */
+/*   Updated: 2026/09/02 11:09:00 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 void rotate_nodes(t_stack **stack)
 {
     if (!stack || !*stack || (*stack)->next == *stack)
