@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 13:13:18 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/02 13:53:19 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/03 21:23:00 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void simple_sort(t_stack **stack_a, t_stack **stack_b)
     if (size == 2 && (*stack_a)->value > (*stack_a)->next->value)
         sa(stack_a);
     else if (size == 3 && !is_sorted(*stack_a))
+    
+    
         sort_three(stack_a);
         
   
