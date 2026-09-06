@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
- #include "push_swap.h"
 
- void	free_stack(t_stack_info *stack)
+void	free_stack(t_stack_info *stack)
 {
 	t_stack	*tmp;
 	t_stack	*cur;
@@ -43,7 +42,46 @@ void	free_all(t_control *ctrl)
 	free(ctrl);
 }
 
- int	process_arg(char *arg, t_control *ctrl)
+t_control	*init_control(void)
+{
+	t_control	*ctrl;
+	int			i;
+
+	ctrl = malloc(sizeof(t_control));
+	if (!ctrl)
+		return (NULL);
+	ctrl->a = malloc(sizeof(t_stack_info));
+	if (!ctrl->a)
+	{
+		free(ctrl);
+		return (NULL);
+	}
+	ctrl->b = malloc(sizeof(t_stack_info));
+	if (!ctrl->b)
+	{
+		free(ctrl->a);
+		free(ctrl);
+		return (NULL);
+	}
+	ctrl->a->top = NULL;
+	ctrl->a->size = 0;
+	ctrl->b->top = NULL;
+	ctrl->b->size = 0;
+	ctrl->mode = MODE_ADAPTIVE;
+	ctrl->bench = 0;
+	ctrl->adaptive_checker = 0;
+	ctrl->total_ops = 0;
+	ctrl->disorder = 0.0;
+	i = 0;
+	while (i < 11)
+	{
+		ctrl->op_counts[i] = 0;
+		i++;
+	}
+	return (ctrl);
+}
+
+int	process_arg(char *arg, t_control *ctrl)
 {
 	int	flag_res;
 
@@ -86,11 +124,19 @@ int	main(int ac, char **av)
 		free_all(ctrl);
 		return (1);
 	}
+	if (has_duplicate(ctrl->a->top))
+	{
+		ft_error();
+		free_all(ctrl);
+		return (1);
+	}
 	if (!is_sorted(ctrl->a->top))
 	{
 		indexing(ctrl->a);
 		execute_sort(ctrl);
 	}
+	if (ctrl->bench)
+		print_bench_stats(ctrl);
 	free_all(ctrl);
 	return (0);
 }

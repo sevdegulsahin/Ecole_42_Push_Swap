@@ -11,31 +11,35 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void rotate_nodes(t_stack **stack)
-{
-    if (!stack || !*stack || (*stack)->next == *stack)
-        return;
 
-    *stack = (*stack)->next;
-}
-void ra(t_stack **a, int print)
+void	rotate_nodes(t_stack **stack)
 {
-    rotate_nodes(a);
-    if (print)
-        write(1, "ra\n", 3);
+	if (!stack || !*stack || (*stack)->next == *stack)
+		return ;
+	*stack = (*stack)->next;
 }
 
-void rb(t_stack **b, int print)
+void	ra(t_control *ctrl)
 {
-    rotate_nodes(b);
-    if (print)
-        write(1, "rb\n", 3);
+	rotate_nodes(&ctrl->a->top);
+	write(1, "ra\n", 3);
+	ctrl->op_counts[OP_RA]++;
+	ctrl->total_ops++;
 }
 
-void rr(t_stack **a, t_stack **b, int print)
+void	rb(t_control *ctrl)
 {
-    rotate_nodes(a);
-    rotate_nodes(b);
-    if (print)
-        write(1, "rr\n", 3);
+	rotate_nodes(&ctrl->b->top);
+	write(1, "rb\n", 3);
+	ctrl->op_counts[OP_RB]++;
+	ctrl->total_ops++;
+}
+
+void	rr(t_control *ctrl)
+{
+	rotate_nodes(&ctrl->a->top);
+	rotate_nodes(&ctrl->b->top);
+	write(1, "rr\n", 3);
+	ctrl->op_counts[OP_RR]++;
+	ctrl->total_ops++;
 }

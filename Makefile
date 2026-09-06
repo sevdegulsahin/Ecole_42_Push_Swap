@@ -10,8 +10,10 @@ SRCS        = push_swap.c \
 			  adaptive_sort.c \
 			  calculate_disorder.c \
 			  helpers.c \
+			  libft_help_me.c \
 			  medium_sort.c \
 			  push_operations.c \
+			  radix_sort.c \
 			  reverse_rotate_operations.c \
 			  rotate_operations.c \
 			  simple_sort.c \
