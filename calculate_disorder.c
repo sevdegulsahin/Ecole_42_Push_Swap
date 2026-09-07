@@ -27,15 +27,13 @@ double	calculate_disorder(t_stack_info *a)
 	while (i_node)
 	{
 		j_node = i_node->next;
-		while (j_node && j_node != a->top)
+		while (j_node)
 		{
 			if (i_node->index > j_node->index)
 				mistakes++;
 			j_node = j_node->next;
 		}
 		i_node = i_node->next;
-		if (i_node == a->top)
-			break ;
 	}
 	return ((double)mistakes / (double)total_pairs);
 }

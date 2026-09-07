@@ -23,35 +23,33 @@ void	swap_nodes(t_stack **stack)
 		return ;
 	first = *stack;
 	second = first->next;
+	
 	temp_value = first->value;
 	temp_index = first->index;
+	
 	first->value = second->value;
 	first->index = second->index;
+	
 	second->value = temp_value;
 	second->index = temp_index;
 }
-
-void	sa(t_control *ctrl)
+void	sa(t_stack **a, int print)
 {
-	swap_nodes(&ctrl->a->top);
-	write(1, "sa\n", 3);
-	ctrl->op_counts[OP_SA]++;
-	ctrl->total_ops++;
+	swap_nodes(a);
+	if (print)
+		write(1, "sa\n", 3);
+}
+void	sb(t_stack **b, int print)
+{
+	swap_nodes(b);
+	if (print)
+		write(1, "sb\n", 3);
 }
 
-void	sb(t_control *ctrl)
+void	ss(t_stack **a, t_stack **b, int print)
 {
-	swap_nodes(&ctrl->b->top);
-	write(1, "sb\n", 3);
-	ctrl->op_counts[OP_SB]++;
-	ctrl->total_ops++;
-}
-
-void	ss(t_control *ctrl)
-{
-	swap_nodes(&ctrl->a->top);
-	swap_nodes(&ctrl->b->top);
-	write(1, "ss\n", 3);
-	ctrl->op_counts[OP_SS]++;
-	ctrl->total_ops++;
+	swap_nodes(a);
+	swap_nodes(b);
+	if (print)
+		write(1, "ss\n", 3);
 }

@@ -12,9 +12,10 @@
 
 #include "push_swap.h"
 
+
 void	push_nodes(t_stack **src, t_stack **dest)
 {
-	t_stack	*temp;
+	t_stack *temp;
 
 	if (!src || !*src || !dest)
 		return ;
@@ -39,27 +40,16 @@ void	push_nodes(t_stack **src, t_stack **dest)
 	}
 	*dest = temp;
 }
-
-void	pa(t_control *ctrl)
+void	pa(t_stack **a, t_stack **b, int print)
 {
-	if (!ctrl->b->top)
-		return ;
-	push_nodes(&ctrl->b->top, &ctrl->a->top);
-	ctrl->a->size++;
-	ctrl->b->size--;
-	write(1, "pa\n", 3);
-	ctrl->op_counts[OP_PA]++;
-	ctrl->total_ops++;
+	push_nodes(b, a);
+	if (print)
+		write(1, "pa\n", 3);
 }
 
-void	pb(t_control *ctrl)
+void	pb(t_stack **a, t_stack **b, int print)
 {
-	if (!ctrl->a->top)
-		return ;
-	push_nodes(&ctrl->a->top, &ctrl->b->top);
-	ctrl->a->size--;
-	ctrl->b->size++;
-	write(1, "pb\n", 3);
-	ctrl->op_counts[OP_PB]++;
-	ctrl->total_ops++;
+	push_nodes(a, b);
+	if (print)
+		write(1, "pb\n", 3);
 }
