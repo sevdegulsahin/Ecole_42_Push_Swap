@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 19:03:05 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/03 19:53:19 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/07 15:21:21 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_stack(t_stack_info *stack)
 	t_stack	*tmp;
 	t_stack	*cur;
 
-	if (!stack || !stack->top)
+	if (!stack )
 		return ;
 	cur = stack->top;
 	while (cur)
@@ -79,18 +79,6 @@ t_control	*init_control(void)
 		i++;
 	}
 	return (ctrl);
-}
-
-int	process_arg(char *arg, t_control *ctrl)
-{
-	int	flag_res;
-
-	flag_res = handle_flags(arg, ctrl);
-	if (flag_res == 1)
-		return (1);
-	if (flag_res == -1)
-		return (0);
-	return (parse_number(arg, ctrl));
 }
 
 int	parse_args(int ac, char **av, t_control *ctrl)

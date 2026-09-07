@@ -6,59 +6,80 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:31:49 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/03 19:48:11 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/07 13:01:35 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
-#include "push_swap.h"
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char *ft_substr(char const *s, unsigned int start,size_t len)
 {
-	char	*arr;
-	size_t	s_len;
-	size_t	i;
+    size_t s_len;
+    size_t i=0;
+    char *array;
+    if(!s)
+    {
+      return NULL; 
+    }
+    s_len=ft_strlen(s);
+    if(start >= s_len)
+    {
+        return (ft_strdup(""));
+    }
+    else if(len > s_len - start)
+    {
+        len=s_len - start;
+    }
+    array=(char *)(malloc(sizeof(char )*(len+1)));
+    if(!array)
+    {
+        return NULL;
+    }
+    while (i < len && s[start + i] != '\0')
+    {
+        array[i]=s[start+i];
+        i++;
+    }
+    array[i]='\0';
+    return (array);
+}
 
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-	{
-		arr = (char *)malloc(1);
-		if (!arr)
-			return (NULL);
-		arr[0] = '\0';
-		return (arr);
-	}
-	if (len > s_len - start)
-		len = s_len - start;
-	arr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!arr)
-		return (NULL);
+char	*ft_strdup(const char *s)
+{
+	size_t	i;
+	char	*array;
+
 	i = 0;
-	while (i < len && s[start + i] != '\0')
+	array = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!array)
 	{
-		arr[i] = s[start + i];
+		return (NULL);
+	}
+	while (s[i] != '\0')
+	{
+		array[i] = s[i];
 		i++;
 	}
-	arr[i] = '\0';
-	return (arr);
+	array[i] = '\0';
+	return (array);
 }
 
-char	**free_split(char **s, int i)
+void	free_matrix(char **s)
 {
-	while (i >= 0)
+	int	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
 	{
 		free(s[i]);
-		i--;
+		i++;
 	}
 	free(s);
-	return (NULL);
 }
 
-int	word_count(const char *s, char c)
+ int	word_count(const char *s, char c)
 {
 	int	count;
 
@@ -72,7 +93,7 @@ int	word_count(const char *s, char c)
 	return (count);
 }
 
-int	word_len(const char *s, char c)
+ int	word_len(const char *s, char c)
 {
 	int	len;
 
@@ -82,28 +103,41 @@ int	word_len(const char *s, char c)
 	return (len);
 }
 
+ char	**free_split_failed(char **array, int i)
+{
+	while (i > 0)
+	{
+		i--;
+		free(array[i]);
+	}
+	free(array);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		i;
+	int		w_len;
 
 	if (!s)
 		return (NULL);
-	i = 0;
 	array = malloc(sizeof(char *) * (word_count(s, c) + 1));
 	if (!array)
 		return (NULL);
+	i = 0;
 	while (*s)
 	{
 		while (*s == c)
 			s++;
 		if (*s)
 		{
-			array[i] = ft_substr(s, 0, word_len(s, c));
+			w_len = word_len(s, c);
+			array[i] = ft_substr(s, 0, w_len);
 			if (!array[i])
-				return (free_split(array, i));
+				return (free_split_failed(array, i));
+			s += w_len;
 			i++;
-			s = s + word_len(s, c);
 		}
 	}
 	array[i] = NULL;
