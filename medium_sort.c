@@ -45,16 +45,16 @@ void	push_chunk_to_b(t_control *ctrl, int min_bound, int max_bound)
 	current_index = ctrl->a->top->index;
 	if (current_index <= min_bound)
 	{
-		pb(ctrl->a, ctrl->b, 1, ctrl);
-		rb(ctrl->b, 1, ctrl);
+		pb(ctrl);
+		rb(ctrl);
 	}
 	else if (current_index <= max_bound)
-		pb(ctrl->a, ctrl->b, 1, ctrl);
+		pb(ctrl);
 	else
-		ra(ctrl->a, 1, ctrl);
+		ra(ctrl);
 }
 
-static void	push_back_to_a(t_control *ctrl)
+void	push_back_to_a(t_control *ctrl)
 {
 	int	b_size;
 	int	target_index;
@@ -70,14 +70,14 @@ static void	push_back_to_a(t_control *ctrl)
 		if (position <= b_size / 2)
 		{
 			while (ctrl->b->top->index != target_index)
-				rb(ctrl->b, 1, ctrl);
+				rb(ctrl);
 		}
 		else
 		{
 			while (ctrl->b->top->index != target_index)
-				rrb(ctrl->b, 1, ctrl);
+				rrb(ctrl);
 		}
-		pa(ctrl->a, ctrl->b, 1, ctrl);
+		pa(ctrl);
 	}
 }
 

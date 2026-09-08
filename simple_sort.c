@@ -39,7 +39,7 @@ void	sort_three(t_control *ctrl)
 	else if (x < y && y > z && x > z)
 		rra(ctrl);
 }
-void simple_sort(t_stack **stack_a, t_stack **stack_b)
+void	simple_sort(t_control *ctrl)
 {
 	t_stack	*min_node;
 	int		pos;

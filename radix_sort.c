@@ -28,7 +28,7 @@ void	radix_sort(t_control *ctrl)
 	int	size;
 	int	max_bits;
 
-	if (!ctrl || !ctrl->a || is_sorted(ctrl->a))
+	if (!ctrl || !ctrl->a || is_sorted(ctrl->a->top))
 		return ;
 	indexing(ctrl->a);
 	size = get_stack_size(ctrl->a->top);

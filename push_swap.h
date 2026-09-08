@@ -15,6 +15,7 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include <unistd.h>
 
 # define MODE_ADAPTIVE 0
 # define MODE_SIMPLE   1

@@ -59,3 +59,29 @@ void ft_putendl_fd(char *s, int fd)
      write(fd ,"\n",1);
     
 }
+
+int	add_node_back(t_stack_info *stack, int value)
+{
+	t_stack	*new_node;
+
+	new_node = malloc(sizeof(t_stack));
+	if (!new_node)
+		return (0);
+	new_node->value = value;
+	new_node->index = 0;
+	if (!stack->top)
+	{
+		new_node->next = new_node;
+		new_node->prev = new_node;
+		stack->top = new_node;
+	}
+	else
+	{
+		new_node->next = stack->top;
+		new_node->prev = stack->top->prev;
+		stack->top->prev->next = new_node;
+		stack->top->prev = new_node;
+	}
+	stack->size++;
+	return (1);
+}

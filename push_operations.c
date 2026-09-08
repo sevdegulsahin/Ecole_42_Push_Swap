@@ -6,12 +6,12 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 13:40:58 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/03 14:25:11 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 12:28:00 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <unistd.h>
 
 void	push_nodes(t_stack **src, t_stack **dest)
 {
@@ -40,16 +40,27 @@ void	push_nodes(t_stack **src, t_stack **dest)
 	}
 	*dest = temp;
 }
-void	pa(t_stack **a, t_stack **b, int print)
+
+void	pa(t_control *ctrl)
 {
-	push_nodes(b, a);
-	if (print)
-		write(1, "pa\n", 3);
+	if (!ctrl->b->top)
+		return ;
+	push_nodes(&ctrl->b->top, &ctrl->a->top);
+	ctrl->b->size--;
+	ctrl->a->size++;
+	ctrl->op_counts[OP_PA]++;
+	ctrl->total_ops++;
+	write(1, "pa\n", 3);
 }
 
-void	pb(t_stack **a, t_stack **b, int print)
+void	pb(t_control *ctrl)
 {
-	push_nodes(a, b);
-	if (print)
-		write(1, "pb\n", 3);
+	if (!ctrl->a->top)
+		return ;
+	push_nodes(&ctrl->a->top, &ctrl->b->top);
+	ctrl->a->size--;
+	ctrl->b->size++;
+	ctrl->op_counts[OP_PB]++;
+	ctrl->total_ops++;
+	write(1, "pb\n", 3);
 }
