@@ -6,63 +6,11 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:31:49 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/07 13:01:35 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:48:16 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-char *ft_substr(char const *s, unsigned int start,size_t len)
-{
-    size_t s_len;
-    size_t i=0;
-    char *array;
-    if(!s)
-    {
-      return NULL; 
-    }
-    s_len=ft_strlen(s);
-    if(start >= s_len)
-    {
-        return (ft_strdup(""));
-    }
-    else if(len > s_len - start)
-    {
-        len=s_len - start;
-    }
-    array=(char *)(malloc(sizeof(char )*(len+1)));
-    if(!array)
-    {
-        return NULL;
-    }
-    while (i < len && s[start + i] != '\0')
-    {
-        array[i]=s[start+i];
-        i++;
-    }
-    array[i]='\0';
-    return (array);
-}
-
-char	*ft_strdup(const char *s)
-{
-	size_t	i;
-	char	*array;
-
-	i = 0;
-	array = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!array)
-	{
-		return (NULL);
-	}
-	while (s[i] != '\0')
-	{
-		array[i] = s[i];
-		i++;
-	}
-	array[i] = '\0';
-	return (array);
-}
 
 void	free_matrix(char **s)
 {
@@ -79,7 +27,7 @@ void	free_matrix(char **s)
 	free(s);
 }
 
- int	word_count(const char *s, char c)
+int	word_count(const char *s, char c)
 {
 	int	count;
 
@@ -93,7 +41,7 @@ void	free_matrix(char **s)
 	return (count);
 }
 
- int	word_len(const char *s, char c)
+int	word_len(const char *s, char c)
 {
 	int	len;
 
@@ -103,7 +51,7 @@ void	free_matrix(char **s)
 	return (len);
 }
 
- char	**free_split_failed(char **array, int i)
+char	**free_split_failed(char **array, int i)
 {
 	while (i > 0)
 	{
@@ -118,7 +66,6 @@ char	**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		i;
-	int		w_len;
 
 	if (!s)
 		return (NULL);
@@ -132,11 +79,10 @@ char	**ft_split(char const *s, char c)
 			s++;
 		if (*s)
 		{
-			w_len = word_len(s, c);
-			array[i] = ft_substr(s, 0, w_len);
+			array[i] = ft_substr(s, 0, word_len(s, c));
 			if (!array[i])
 				return (free_split_failed(array, i));
-			s += w_len;
+			s += word_len(s, c);
 			i++;
 		}
 	}

@@ -6,12 +6,13 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 17:40:43 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/03 19:38:42 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:33:37 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
- int	get_chunk_size(int total_size)
+
+int	get_chunk_size(int total_size)
 {
 	int	root;
 
@@ -23,7 +24,7 @@
 	return (((root - 1) * 3) / 2);
 }
 
- int	find_index_position(t_stack *b_top, int target_index)
+int	find_index_position(t_stack *b_top, int target_index)
 {
 	int	position;
 
@@ -60,7 +61,7 @@ void	push_back_to_a(t_control *ctrl)
 	int	target_index;
 	int	position;
 
-	while (ctrl->b->size > 0)
+	3 while (ctrl->b->size > 0)
 	{
 		b_size = ctrl->b->size;
 		target_index = b_size - 1;
@@ -83,10 +84,10 @@ void	push_back_to_a(t_control *ctrl)
 
 void	sort_chunk(t_control *ctrl)
 {
-	int	min_bound;
-	int	max_bound;
-	int	chunk_size;
-	int	total_size;
+	int min_bound;
+	int max_bound;
+	int chunk_size;
+	int total_size;
 
 	if (ctrl->mode == 0)
 		ctrl->adaptive_checker = 2;

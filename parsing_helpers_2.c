@@ -6,14 +6,14 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 15:46:49 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/07 15:49:14 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 16:01:54 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 
- void	print_disorder(double d, int fd)
+void	print_disorder(double d, int fd)
 {
 	int		int_part;
 	int		dec_part;
@@ -39,7 +39,9 @@
 void	print_strategy(t_control *ctrl)
 {
 	write(2, "[bench] Strategy: ", 18);
-	if (ctrl->mode == MODE_SIMPLE)
+	if (ctrl->a && ctrl->a->size <= 5)
+		ft_putendl_fd("Simple (O(n^2))", 2);
+	else if (ctrl->mode == MODE_SIMPLE)
 		ft_putendl_fd("Simple (O(n^2))", 2);
 	else if (ctrl->mode == MODE_MEDIUM)
 		ft_putendl_fd("Medium (O(n*sqrt(n)))", 2);
@@ -55,26 +57,29 @@ void	print_strategy(t_control *ctrl)
 			ft_putendl_fd("Adaptive (O(n^2))", 2);
 	}
 }
-
 void	print_bench_stats(t_control *ctrl)
 {
-	static char	*op_names[11] = {
-		"sa", "sb", "ss", "pa", "pb",
-		"ra", "rb", "rr", "rra", "rrb", "rrr"
-	};
-	int			i;
+	static char *op_names[11] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr",
+		"rra", "rrb", "rrr"};
+	int i;
 
-	write(2, "[bench] Disorder: ", 18);
+	write(2, "Disorder: ", 11);
+
 	print_disorder(ctrl->disorder, 2);
+
 	write(2, "\n", 1);
+
 	print_strategy(ctrl);
-	write(2, "[bench] Total operations: ", 26);
+
+	write(2, "Total operations: ", 19);
+
 	ft_putnbr_fd(ctrl->total_ops, 2);
+
 	write(2, "\n", 1);
+
 	i = 0;
 	while (i < 11)
 	{
-		write(2, "[bench] ", 8);
 		ft_putstr_fd(op_names[i], 2);
 		write(2, ": ", 2);
 		ft_putnbr_fd(ctrl->op_counts[i], 2);

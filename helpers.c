@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 14:37:04 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/03 19:55:41 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:34:06 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_stack	*find_min(t_stack *stack)
 		return (NULL);
 	min_node = stack;
 	current = stack->next;
-	// Çember tamamlanana kadar dön
 	while (current != stack)
 	{
 		if (current->value < min_node->value)
@@ -80,23 +79,18 @@ int	get_stack_size(t_stack *stack)
 	}
 	return (count);
 }
-int	has_duplicate(t_stack *stack)
-{
-	t_stack	*current;
-	t_stack	*check;
 
-	if (!stack || stack->next == stack)
+int	has_value(t_stack *stack, int value)
+{
+	t_stack *current;
+
+	if (!stack)
 		return (0);
 	current = stack;
 	while (1)
 	{
-		check = current->next;
-		while (check != current)
-		{
-			if (current->value == check->value)
-				return (1);
-			check = check->next;
-		}
+		if (current->value == value)
+			return (1);
 		current = current->next;
 		if (current == stack)
 			break ;

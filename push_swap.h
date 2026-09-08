@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/31 13:58:59 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/08 12:17:26 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 15:34:40 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			is_sorted(t_stack *stack);
 t_stack		*find_min(t_stack *stack);
 t_stack		*find_max(t_stack *stack);
 int			get_stack_size(t_stack *stack);
-int			has_duplicate(t_stack *stack);
+int has_value(t_stack *stack, int value);
 int			get_position(t_stack *stack, t_stack *target);
 void		indexing(t_stack_info *stack_a);
 int			add_node_back(t_stack_info *stack, int value);
@@ -120,7 +120,7 @@ int			handle_flags(char *arg, t_control *ctrl);
 int			is_valid_arg(char *str);
 int			parse_number(char *arg, t_control *ctrl);
 int			process_arg(char *arg, t_control *ctrl);
-int			parse_args(int ac, char **av, t_control *ctrl);
+int	parse_args(int ac, char **av, t_control *ctrl);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	free_matrix(char **s);

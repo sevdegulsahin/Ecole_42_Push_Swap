@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 13:27:47 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/08 12:28:00 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:35:37 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,10 @@ void	swap_nodes(t_stack **stack)
 		return ;
 	first = *stack;
 	second = first->next;
-
 	temp_value = first->value;
 	temp_index = first->index;
-
 	first->value = second->value;
 	first->index = second->index;
-
 	second->value = temp_value;
 	second->index = temp_index;
 }

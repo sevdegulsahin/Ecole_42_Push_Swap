@@ -6,16 +6,17 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 13:13:18 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/07 15:22:52 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:35:30 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void	sort_three(t_control *ctrl)
 {
-    int x;
-    int y;
-    int z;
+	int	x;
+	int	y;
+	int	z;
 
 	if (!ctrl->a || ctrl->a->size != 3)
 		return ;
@@ -41,8 +42,8 @@ void	sort_three(t_control *ctrl)
 }
 void	simple_sort(t_control *ctrl)
 {
-	t_stack	*min_node;
-	int		pos;
+	t_stack *min_node;
+	int pos;
 
 	if (!ctrl || !ctrl->a || is_sorted(ctrl->a->top))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 13:40:58 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/08 12:28:00 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:35:14 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	push_nodes(t_stack **src, t_stack **dest)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (!src || !*src || !dest)
 		return ;

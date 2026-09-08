@@ -6,13 +6,13 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 15:28:55 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/07 14:12:47 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:36:49 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
- double	count_mistakes(t_stack_info *a)
+double	count_mistakes(t_stack_info *a)
 {
 	t_stack	*i_node;
 	t_stack	*j_node;

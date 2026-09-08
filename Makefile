@@ -19,9 +19,10 @@ SRCS        = push_swap.c \
 			  swap_operations.c \
 			  libft_help_me.c \
 			  libft_help_me_2.c \
-			  radix_sort.c
+			  complex_sort.c\
+			  ft_strdup.c
 
-OBJS        = $(SRCS:.c=.o)
+OBJS  = $(SRCS:.c=.o)
 
 all: $(NAME)
 

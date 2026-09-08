@@ -6,19 +6,18 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 19:03:05 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/08 12:15:37 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:35:17 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
- void	free_stack(t_stack_info *stack)
+void	free_stack(t_stack_info *stack)
 {
 	t_stack	*tmp;
 	t_stack	*cur;
 
-	if (!stack )
+	if (!stack)
 		return ;
 	cur = stack->top;
 	while (cur)
@@ -100,7 +99,7 @@ int	parse_args(int ac, char **av, t_control *ctrl)
 
 int	main(int ac, char **av)
 {
-	t_control	*ctrl;
+	t_control *ctrl;
 
 	if (ac < 2)
 		return (0);
@@ -118,6 +117,11 @@ int	main(int ac, char **av)
 		indexing(ctrl->a);
 		execute_sort(ctrl);
 	}
+	else if (is_sorted(ctrl->a->top))
+	{
+		execute_sort(ctrl);
+	}
+
 	free_all(ctrl);
 	return (0);
 }

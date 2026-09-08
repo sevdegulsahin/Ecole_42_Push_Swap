@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 15:48:57 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/07 15:05:01 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:36:19 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,12 @@ void	adaptive_sort(t_control *ctrl, double disorder)
 
 void	execute_sort(t_control *ctrl)
 {
-	if (!ctrl || !ctrl->a || is_sorted(ctrl->a->top))
+	if (!ctrl || !ctrl->a)
 		return ;
 	ctrl->disorder = calculate_disorder(ctrl->a);
 	if (ctrl->a->size <= 5)
-	{
-		simple_sort(ctrl); // Ekstra fonksiyona gerek kalmadan doğrudan bu çalışır
-		return ;
-	}
-	if (ctrl->mode == MODE_SIMPLE)
+		simple_sort(ctrl);
+	else if (ctrl->mode == MODE_SIMPLE)
 		simple_sort(ctrl);
 	else if (ctrl->mode == MODE_MEDIUM)
 		sort_chunk(ctrl);
@@ -41,4 +38,6 @@ void	execute_sort(t_control *ctrl)
 		radix_sort(ctrl);
 	else
 		adaptive_sort(ctrl, ctrl->disorder);
+	if (ctrl->bench)
+		print_bench_stats(ctrl);
 }

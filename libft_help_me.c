@@ -6,7 +6,7 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 18:31:17 by sevdsahi          #+#    #+#             */
-/*   Updated: 2026/09/07 15:47:12 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 18:34:14 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 }
-long    ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
-    long    res;
-    int     sign;
-    int     i;
+	long	res;
+	int		sign;
+	int		i;
 
 	res = 0;
 	sign = 1;
