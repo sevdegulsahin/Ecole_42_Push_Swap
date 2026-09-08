@@ -6,12 +6,12 @@
 /*   By: serozdem <serozdem@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 19:03:05 by serozdem          #+#    #+#             */
-/*   Updated: 2026/09/07 15:21:21 by serozdem         ###   ########.fr       */
+/*   Updated: 2026/09/08 12:15:37 by serozdem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
- #include "push_swap.h"
+
 
  void	free_stack(t_stack_info *stack)
 {
@@ -43,7 +43,6 @@ void	free_all(t_control *ctrl)
 	free(ctrl);
 }
 
-<<<<<<< HEAD
 t_control	*init_control(void)
 {
 	t_control	*ctrl;
@@ -81,18 +80,6 @@ t_control	*init_control(void)
 		i++;
 	}
 	return (ctrl);
-=======
- int	process_arg(char *arg, t_control *ctrl)
-{
-	int	flag_res;
-
-	flag_res = handle_flags(arg, ctrl);
-	if (flag_res == 1)
-		return (1);
-	if (flag_res == -1)
-		return (0);
-	return (parse_number(arg, ctrl));
->>>>>>> dabf65fcf9eedcb8d1a61563e063498a8158667b
 }
 
 int	parse_args(int ac, char **av, t_control *ctrl)
