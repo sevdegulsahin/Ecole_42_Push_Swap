@@ -57,31 +57,3 @@ void	indexing(t_stack_info *stack_a)
 			break ;
 	}
 }
-
-int	add_node_back(t_stack_info *stack, int value)
-{
-	t_stack	*new_node;
-	t_stack	*tail;
-
-	new_node = malloc(sizeof(t_stack));
-	if (!new_node)
-		return (0);
-	new_node->value = value;
-	new_node->index = 0;
-	if (!stack->top)
-	{
-		new_node->next = new_node;
-		new_node->prev = new_node;
-		stack->top = new_node;
-	}
-	else
-	{
-		tail = stack->top->prev;
-		tail->next = new_node;
-		new_node->prev = tail;
-		new_node->next = stack->top;
-		stack->top->prev = new_node;
-	}
-	stack->size++;
-	return (1);
-}

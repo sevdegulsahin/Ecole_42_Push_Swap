@@ -18,30 +18,32 @@ int	ft_is_digit(int c)
 		return (1);
 	return (0);
 }
-
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
 	if (!s)
+	{
 		return (0);
+	}
 	while (s[i] != '\0')
+	{
 		i++;
+	}
 	return (i);
 }
-
 void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 }
-
-long	ft_atol(const char *str)
+long    ft_atol(const char *str)
 {
-	long	res;
-	int		sign;
-	int		i;
+    long    res;
+    int     sign;
+    int     i;
 
+<<<<<<< HEAD
 	res = 0;
 	sign = 1;
 	i = 0;
@@ -74,3 +76,23 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
+=======
+    res = 0;
+    sign = 1;
+    i = 0;
+    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+        i++;
+    if (str[i] == '-' || str[i] == '+')
+    {
+        if (str[i] == '-')
+            sign = -1;
+        i++;
+    }
+    while (ft_is_digit(str[i]))
+    {
+        res = (res * 10) + (str[i] - '0');
+        i++;
+    }
+    return (res * sign);
+}
+>>>>>>> dabf65fcf9eedcb8d1a61563e063498a8158667b

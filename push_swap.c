@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+ #include "push_swap.h"
 
-void	free_stack(t_stack_info *stack)
+ void	free_stack(t_stack_info *stack)
 {
 	t_stack	*tmp;
 	t_stack	*cur;
@@ -42,6 +43,7 @@ void	free_all(t_control *ctrl)
 	free(ctrl);
 }
 
+<<<<<<< HEAD
 t_control	*init_control(void)
 {
 	t_control	*ctrl;
@@ -79,6 +81,18 @@ t_control	*init_control(void)
 		i++;
 	}
 	return (ctrl);
+=======
+ int	process_arg(char *arg, t_control *ctrl)
+{
+	int	flag_res;
+
+	flag_res = handle_flags(arg, ctrl);
+	if (flag_res == 1)
+		return (1);
+	if (flag_res == -1)
+		return (0);
+	return (parse_number(arg, ctrl));
+>>>>>>> dabf65fcf9eedcb8d1a61563e063498a8158667b
 }
 
 int	parse_args(int ac, char **av, t_control *ctrl)
@@ -112,19 +126,11 @@ int	main(int ac, char **av)
 		free_all(ctrl);
 		return (1);
 	}
-	if (has_duplicate(ctrl->a->top))
-	{
-		ft_error();
-		free_all(ctrl);
-		return (1);
-	}
 	if (!is_sorted(ctrl->a->top))
 	{
 		indexing(ctrl->a);
 		execute_sort(ctrl);
 	}
-	if (ctrl->bench)
-		print_bench_stats(ctrl);
 	free_all(ctrl);
 	return (0);
 }

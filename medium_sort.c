@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	get_chunk_size(int total_size)
+ int	get_chunk_size(int total_size)
 {
 	int	root;
 
@@ -24,23 +23,17 @@ int	get_chunk_size(int total_size)
 	return (((root - 1) * 3) / 2);
 }
 
-int	find_index_position(t_stack *b_top, int target_index)
+ int	find_index_position(t_stack *b_top, int target_index)
 {
-	t_stack	*cur;
-	int		position;
+	int	position;
 
-	if (!b_top)
-		return (-1);
-	cur = b_top;
 	position = 0;
-	while (1)
+	while (b_top != NULL)
 	{
-		if (cur->index == target_index)
+		if (b_top->index == target_index)
 			return (position);
-		cur = cur->next;
+		b_top = b_top->next;
 		position++;
-		if (cur == b_top)
-			break ;
 	}
 	return (-1);
 }
@@ -52,16 +45,16 @@ void	push_chunk_to_b(t_control *ctrl, int min_bound, int max_bound)
 	current_index = ctrl->a->top->index;
 	if (current_index <= min_bound)
 	{
-		pb(ctrl);
-		rb(ctrl);
+		pb(ctrl->a, ctrl->b, 1, ctrl);
+		rb(ctrl->b, 1, ctrl);
 	}
 	else if (current_index <= max_bound)
-		pb(ctrl);
+		pb(ctrl->a, ctrl->b, 1, ctrl);
 	else
-		ra(ctrl);
+		ra(ctrl->a, 1, ctrl);
 }
 
-void	push_back_to_a(t_control *ctrl)
+static void	push_back_to_a(t_control *ctrl)
 {
 	int	b_size;
 	int	target_index;
@@ -77,14 +70,14 @@ void	push_back_to_a(t_control *ctrl)
 		if (position <= b_size / 2)
 		{
 			while (ctrl->b->top->index != target_index)
-				rb(ctrl);
+				rb(ctrl->b, 1, ctrl);
 		}
 		else
 		{
 			while (ctrl->b->top->index != target_index)
-				rrb(ctrl);
+				rrb(ctrl->b, 1, ctrl);
 		}
-		pa(ctrl);
+		pa(ctrl->a, ctrl->b, 1, ctrl);
 	}
 }
 
@@ -95,6 +88,8 @@ void	sort_chunk(t_control *ctrl)
 	int	chunk_size;
 	int	total_size;
 
+	if (ctrl->mode == 0)
+		ctrl->adaptive_checker = 2;
 	indexing(ctrl->a);
 	min_bound = 0;
 	total_size = ctrl->a->size;

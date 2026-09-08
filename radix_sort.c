@@ -11,14 +11,11 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 int	get_max_bits(int size)
 {
 	int	max_bits;
 
 	max_bits = 0;
-	if (size <= 1)
-		return (0);
 	while ((size - 1) >> max_bits)
 		max_bits++;
 	return (max_bits);
@@ -31,10 +28,10 @@ void	radix_sort(t_control *ctrl)
 	int	size;
 	int	max_bits;
 
-	if (!ctrl || !ctrl->a || is_sorted(ctrl->a->top))
+	if (!ctrl || !ctrl->a || is_sorted(ctrl->a))
 		return ;
 	indexing(ctrl->a);
-	size = ctrl->a->size;
+	size = get_stack_size(ctrl->a->top);
 	max_bits = get_max_bits(size);
 	i = 0;
 	while (i < max_bits)
@@ -48,7 +45,7 @@ void	radix_sort(t_control *ctrl)
 				ra(ctrl);
 			j++;
 		}
-		while (ctrl->b->size > 0)
+		while (ctrl->b && ctrl->b->top)
 			pa(ctrl);
 		i++;
 	}
